@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARTE OBALA 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Segoe UI',sans-serif}
+body{background:#0a0a0a;color:#fff;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 22px;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1)}
+.logo{font-weight:900;letter-spacing:2px;font-size:18px}.logo span{color:#e8c87a}
+.nav-links{display:flex;gap:22px;font-size:13px;font-weight:600;opacity:.9}
+.nav-links a:hover{color:#e8c87a}
+.live{background:#e8c87a;color:#000;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:900}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 20px 40px;background:radial-gradient(ellipse at center,#1a3a28 0%,#0a0a0a 65%)}
+.hero small{letter-spacing:4px;font-size:13px;font-weight:600;text-transform:uppercase;color:#fff;opacity:.65}
+.hero h1{font-size:clamp(58px,14vw,150px);line-height:.85;font-weight:900;letter-spacing:-2px;margin:14px 0}
+.hero h1 em{font-style:normal;color:#e8c87a}
+/* HERO PICTURE */
+.hero-img{width:100%;max-width:620px;border-radius:22px;overflow:hidden;border:2px solid #e8c87a;box-shadow:0 20px 50px rgba(0,0,0,.6);margin:18px 0 10px}
+.hero-img img{width:100%;display:block}
+.hero p.tag{margin-top:18px;font-size:15px;opacity:.8}
+.hero p.tag b{color:#e8c87a}
+.pills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.pills span{border:1px solid rgba(255,255,255,.25);padding:10px 18px;border-radius:30px;font-size:13px;font-weight:600}
+.pills span.gold{background:#e8c87a;color:#000;border-color:#e8c87a}
+.scroll{margin-top:35px;font-size:12px;opacity:.6;letter-spacing:3px}
+.section{max-width:1050px;margin:auto;padding:45px 18px}
+.sec-title{font-size:32px;font-weight:900;margin-bottom:6px}.sec-title span{color:#e8c87a}
+.sec-sub{opacity:.65;font-size:14px;margin-bottom:22px}
+.leader{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.team-card{background:#151515;border:1px solid #262626;border-radius:22px;padding:26px;text-align:center;position:relative;overflow:hidden}
+.team-card.win{border-color:#e8c87a;background:linear-gradient(180deg,#1e1a0a,#151515)}
+.team-card h3{font-size:20px;letter-spacing:2px}.team-card .pts{font-size:72px;font-weight:900;line-height:1;margin:10px 0}.team-card .pts small{font-size:16px;opacity:.6}
+.bar{height:10px;background:#262626;border-radius:20px;overflow:hidden;margin-top:12px}
+.bar i{display:block;height:100%;background:#e8c87a;transition:.5s}
+.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:8px 0 14px}
+.filters button{padding:12px 20px;border-radius:30px;border:1px solid #333;background:#151515;color:#fff;cursor:pointer;font-weight:700;font-size:13px}
+.filters button.active{background:#fff;color:#000}
+.filters button.add-btn{background:#e8c87a;color:#000;border-color:#e8c87a;display:none}
+.filters button.add-btn.show{display:block}
+.prog-form{display:none;gap:8px;justify-content:center;background:#151515;border:1px solid #e8c87a;border-radius:30px;padding:6px 6px 6px 16px;max-width:440px;margin:0 auto 14px}
+.prog-form.show{display:flex}
+.prog-form input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px;min-width:0}
+.prog-form button{padding:10px 16px;border:none;border-radius:20px;font-weight:900;cursor:pointer}
+.prog-form .go{background:#e8c87a}.prog-form .close{background:#333;color:#fff}
+.search{width:100%;max-width:500px;display:block;margin:0 auto 20px;background:#151515;border:1px solid #333;color:#fff;padding:14px 18px;border-radius:30px;font-size:14px;outline:none}
+.results{display:grid;gap:16px}
+.item{background:#151515;border:1px solid #262626;border-radius:20px;padding:20px}
+.item h4{font-size:20px}.badge{font-size:11px;background:#e8c87a;color:#000;padding:5px 10px;border-radius:12px;font-weight:800;margin-left:8px}
+.badge.general{background:#fff;color:#000}
+table{width:100%;border-collapse:collapse;margin-top:14px}td,th{padding:11px;border-bottom:1px solid #262626;text-align:left;font-size:14px}
+.first{color:#e8c87a;font-weight:800}
+.del{background:#ff3b30;color:#fff;border:none;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:12px}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.prog-card{background:#151515;border:1px solid #262626;border-radius:16px;padding:18px 14px;text-align:center;font-weight:700;font-size:14px;cursor:pointer}
+.prog-card:hover{border-color:#e8c87a}
+.prog-card small{display:block;opacity:.55;font-weight:400;font-size:12px;margin-top:6px}
+.admin-wrap{background:#151515;border:1px solid #262626;border-radius:24px;padding:26px;text-align:center}
+.admin-wrap h3{font-size:22px;font-weight:900}.admin-wrap p{opacity:.65;font-size:13px;margin:8px 0 16px}
+.admin-wrap input{width:100%;max-width:400px;padding:14px;border-radius:12px;border:1px solid #333;background:#000;color:#fff;font-size:14px;margin-bottom:10px;outline:none}
+.admin-wrap button{background:#e8c87a;color:#000;padding:13px 24px;border:none;border-radius:12px;font-weight:900;cursor:pointer;font-size:14px}
+.admin{display:none;background:#e8c87a;color:#000;border-radius:24px;padding:26px;text-align:left}
+.admin.show{display:block}
+.admin h3{font-size:24px;font-weight:900;margin-bottom:4px}.admin p{font-size:13px;opacity:.7;margin-bottom:14px}
+.admin input,.admin select{width:100%;padding:13px;margin:7px 0;border-radius:12px;border:1px solid #00000020;font-size:14px;background:#fff}
+.admin button{background:#000;color:#e8c87a;padding:15px;width:100%;border:none;border-radius:12px;font-weight:900;font-size:15px;cursor:pointer;margin-top:6px}
+.admin button.white{background:#fff;color:#000}
+.admin button.logout{background:transparent;color:#000;border:2px solid #000}
+footer{text-align:center;padding:35px 20px;opacity:.6;font-size:13px;line-height:1.7}
+footer b{color:#e8c87a;letter-spacing:2px}
+@media(max-width:600px){.nav-links{display:none}.leader{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="logo">ARTE <span>OBALA</span></div><div class="nav-links"><a href="#home">Home</a><a href="#results">Results</a><a href="#programs">Programs</a><a href="#admin">Admin</a></div><div class="live">● LIVE</div></nav>
+
+<section class="hero" id="home">
+<small>✨ ARTE OBALA STUDENTS FEST 2026 • NOV 25-26</small>
+<h1>ARTE<br><em>OBALA</em></h1>
+
+<!-- HERO PICTURE - hero.jpg ennu peru koduthu upload cheyyanam -->
+<div class="hero-img"><img src="hero.jpg" alt="ARTE OBALA - Verukalil Ninnu Vinayangalilekk"></div>
+
+<p class="tag"><b>DAZZLERS</b> vs <b>DYNAMOS</b> • Group 10-7-5 • Individual 5-3-1</p>
+<div class="pills"><span class="gold">🏆 View Live Results ↓</span><span>Nov 25-26, 2026</span></div>
+<div class="scroll">SCROLL ↓</div>
+</section>
+
+<section class="section" id="results">
+<div class="sec-title">Live <span>Leaderboard</span></div><div class="sec-sub">Points update automatically when marks are added.</div>
+<div class="leader">
+<div class="team-card" id="cardDazz"><h3>✨ DAZZLERS</h3><div class="pts"><span id="ptsDazz">0</span> <small>pts</small></div><p id="dazzLabel">Leading</p><div class="bar"><i id="barDazz" style="width:50%"></i></div></div>
+<div class="team-card" id="cardDyna"><h3>⚡ DYNAMOS</h3><div class="pts"><span id="ptsDyna">0</span> <small>pts</small></div><p id="dynaLabel">Leading</p><div class="bar"><i id="barDyna" style="width:50%"></i></div></div>
+</div>
+</section>
+
+<section class="section" style="padding-top:0">
+<div class="sec-title">All <span>Results</span></div><div class="sec-sub">Everyone can view results. Only Admin can add marks.</div>
+<div class="filters">
+<button class="active" onclick="filterType('All',this)">All Items</button>
+<button onclick="filterType('Group',this)">Group</button>
+<button onclick="filterType('Individual',this)">Individual</button>
+<button class="add-btn" id="addProgBtn" onclick="toggleProg()">+ Add Program</button>
+</div>
+<div class="prog-form" id="progForm"><input id="newProg" placeholder="New Program Name"><button class="go" onclick="addProgram()">Add</button><button class="close" onclick="toggleProg()">✕</button></div>
+<input class="search" id="search" oninput="render()" placeholder="🔍 Search program or name...">
+<div class="results" id="results"></div>
+</section>
+
+<section class="section" id="programs" style="padding-top:0">
+<div class="sec-title">Programs <span>List</span></div><div class="sec-sub">Programs will appear here when Admin adds them.</div>
+<div class="prog-grid" id="progGrid"></div>
+</section>
+
+<section class="section" id="admin" style="padding-top:0">
+<div class="admin-wrap" id="loginBox">
+<h3>🔒 ADMIN LOGIN</h3><p>Only Admin can add marks. Viewers can only see results.</p>
+<input type="password" id="adminPass" placeholder="Enter Admin Password">
+<br><button onclick="unlockAdmin()">Unlock Admin</button>
+</div>
+<div class="admin" id="adminBox">
+<h3>🔓 MARK ADMIN - Welcome Admin</h3><p>Add marks. Rank & points are calculated automatically.</p>
+<select id="itemType"><option value="Individual">Individual Item</option><option value="Group">Group Item</option></select>
+<select id="item"><option value="">-- Select Program --</option></select>
+<input id="itemCustom" placeholder="OR - Type here to add a new program">
+<label style="font-size:13px;font-weight:700">Select Category:</label>
+<select id="zone"><option>High Zone</option><option>Middle Zone</option><option>Low Zone</option><option>General</option></select>
+<input id="name" placeholder="Participant Name - Leave blank for Group">
+<select id="team"><option>Dazzlers</option><option>Dynamos</option></select>
+<input id="mark" type="number" placeholder="Mark - Eg: 85">
+<button onclick="addResult()">+ Save Mark - Auto Rank</button>
+<button class="white" onclick="exportCSV()">⬇ Download CSV</button>
+<button class="logout" onclick="lockAdmin()">🔒 Lock Admin / Logout</button>
+</div>
+</section>
+
+<footer><b>ARTE OBALA</b><br>© 2026 ARTE OBALA • Dazzlers vs Dynamos</footer>
+
+<script>
+let ADMIN_PASSWORD="Arteobala26";
+let isAdmin=false;
+let programs=JSON.parse(localStorage.getItem('arte_programs')||'[]');
+let data=JSON.parse(localStorage.getItem('arte_data')||'[]');
+let currentFilter='All';
+function saveAll(){localStorage.setItem('arte_programs',JSON.stringify(programs));localStorage.setItem('arte_data',JSON.stringify(data));}
+function getPoints(rank,type){if(type=='Group'){return rank==1?10:rank==2?7:rank==3?5:0;}else{return rank==1?5:rank==2?3:rank==3?1:0;}}
+function unlockAdmin(){
+let v=document.getElementById('adminPass').value;
+if(v===ADMIN_PASSWORD){isAdmin=true;document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').classList.add('show');document.getElementById('addProgBtn').classList.add('show');render();alert('Welcome Admin! Now you can add marks.');}
+else{alert('Wrong Password! Only Admin can login.');}
+}
+function lockAdmin(){isAdmin=false;document.getElementById('loginBox').style.display='block';document.getElementById('adminBox').classList.remove('show');document.getElementById('addProgBtn').classList.remove('show');document.getElementById('adminPass').value='';document.getElementById('progForm').classList.remove('show');render();}
+function toggleProg(){if(!isAdmin){alert('Only Admin can add program. Please login below.');document.getElementById('admin').scrollIntoView({behavior:'smooth'});return;}document.getElementById('progForm').classList.toggle('show');if(document.getElementById('progForm').classList.contains('show')) document.getElementById('newProg').focus();}
+function renderPrograms(){
+let sel=document.getElementById('item');
+sel.innerHTML='<option value="">-- Select Program --</option>'+programs.map(p=>`<option value="${p}">${p}</option>`).join('');
+document.getElementById('progGrid').innerHTML=programs.length?programs.map(p=>`<div class="prog-card" onclick="searchProg('${p}')">${p}<small>Click to view results</small></div>`).join(''):'<p style="opacity:.6;padding:10px">No programs yet. Admin will add programs soon.</p>';
+}
+function searchProg(p){document.getElementById('search').value=p;document.getElementById('results').scrollIntoView({behavior:'smooth'});render();}
+function addProgram(){
+if(!isAdmin){alert('Only Admin can add program.');return;}
+let v=document.getElementById('newProg').value.trim();
+if(!v){alert('Please enter program name');return;}
+if(programs.includes(v)){alert('This program already exists');return;}
+programs.push(v);saveAll();document.getElementById('newProg').value='';renderPrograms();toggleProg();alert(v+' Added!');
+}
+function filterType(t,btn){currentFilter=t;document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));if(btn.classList.contains('add-btn'))return;btn.classList.add('active');render();}
+function render(){
+let q=(document.getElementById('search').value||'').toLowerCase();
+let ptsD=0,ptsDyna=0;let grouped={};
+data.forEach(r=>{if(!grouped[r.item+'|'+r.zone+'|'+r.type]) grouped[r.item+'|'+r.zone+'|'+r.type]=[];grouped[r.item+'|'+r.zone+'|'+r.type].push(r);});
+Object.values(grouped).forEach(list=>{list.sort((a,b)=>b.mark-a.mark);list.forEach((r,idx)=>{r.rank=idx+1;let p=getPoints(r.rank,r.type);if(r.team=='Dazzlers')ptsD+=p;else ptsDyna+=p;});});
+document.getElementById('ptsDazz').innerText=ptsD;document.getElementById('ptsDyna').innerText=ptsDyna;
+let total=ptsD+ptsDyna||1;document.getElementById('barDazz').style.width=(ptsD/total*100)+'%';document.getElementById('barDyna').style.width=(ptsDyna/total*100)+'%';
+document.getElementById('dazzLabel').innerText=ptsD>ptsDyna?'🏆 Leading':ptsD<ptsDyna?'Trailing':'Tied';document.getElementById('dynaLabel').innerText=ptsDyna>ptsD?'🏆 Leading':ptsDyna<ptsD?'Trailing':'Tied';
+document.getElementById('cardDazz').classList.toggle('win',ptsD>ptsDyna);document.getElementById('cardDyna').classList.toggle('win',ptsDyna>ptsD);
+let keys=[...new Set(data.map(d=>d.item+'|'+d.zone+'|'+d.type))];let html='';
+keys.forEach(k=>{
+let parts=k.split('|');let it=parts[0],zone=parts[1],type=parts[2];
+if(currentFilter!='All' && type!=currentFilter) return;
+let rows=data.filter(d=>d.item==it && d.zone==zone && d.type==type).sort((a,b)=>b.mark-a.mark);
+if(q && !it.toLowerCase().includes(q) && !rows.some(r=>(r.name||'').toLowerCase().includes(q))) return;
+let isGen=zone=='General';
+html+=`<div class="item"><h4>${it} <span class="badge ${isGen?'general':''}">${zone} • ${type}</span></h4><table><tr><th>Rank</th><th>Name / Team</th><th>Mark</th><th>Points</th>${isAdmin?'<th></th>':''}</tr>${rows.map(r=>`<tr class="${r.rank==1?'first':''}"><td>${r.rank==1?'🥇 1st':r.rank==2?'🥈 2nd':r.rank==3?'🥉 3rd':r.rank+'th'}</td><td>${r.type=='Group'?'<b>'+r.team+'</b>':r.name+' - <b>'+r.team+'</b>'}</td><td>${r.mark}</td><td>${getPoints(r.rank,r.type)}</td>${isAdmin?`<td><button class="del" onclick="deleteResult(${data.indexOf(r)})">Delete</button></td>`:''}</tr>`).join('')}</table></div>`;
+});
+document.getElementById('results').innerHTML=html||'<p style="text-align:center;padding:25px;opacity:.6">No results yet. Admin will add results soon.</p>';
+}
+function addResult(){
+if(!isAdmin){alert('Only Admin can add marks.');return;}
+let type=document.getElementById('itemType').value;
+let custom=document.getElementById('itemCustom').value.trim();
+let item=custom || document.getElementById('item').value;
+let zone=document.getElementById('zone').value,name=document.getElementById('name').value,team=document.getElementById('team').value,mark=+document.getElementById('mark').value;
+if(!item){alert('Please select or type a program');return;}
+if(!mark){alert('Please enter mark');return;}
+if(type=='Individual' && !name){alert('Name is required for Individual');return;}
+if(custom && !programs.includes(custom)){programs.push(custom);renderPrograms();}
+data.push({type,item,zone,name,team,mark});saveAll();render();
+document.getElementById('name').value='';document.getElementById('mark').value='';document.getElementById('itemCustom').value='';document.getElementById('item').value='';
+alert('Saved! Rank calculated automatically.');
+}
+function deleteResult(i){if(!isAdmin){alert('Only Admin can delete.');return;}if(confirm('Delete this result?')){data.splice(i,1);saveAll();render();}}
+function exportCSV(){
+if(!isAdmin){alert('Only Admin can download.');return;}
+let csv="Program,Zone,Type,Rank,Name,Team,Mark,Points\n";
+data.forEach(r=>{csv+=`${r.item},${r.zone},${r.type},${r.rank},${r.name},${r.team},${r.mark},${getPoints(r.rank,r.type)}\n`;});
+let a=document.createElement('a');a.href='data:text/csv;charset=utf-8,[STRIPPED]
+}
+renderPrograms();render();
+</script>
+</body>
+</html>
